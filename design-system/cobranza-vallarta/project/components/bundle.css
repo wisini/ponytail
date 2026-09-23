@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap");
+
+body { margin: 0; font-family: var(--font-sans); font-size: 15px; line-height: 22px; background: var(--fondo); color: var(--tinta); }
+.cv-fila { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; padding: var(--space-4); }
+.cv-pila { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-4); }
+
+/* Ventana — the terminal window from Ponytail's banner */
+.cv-ventana { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radius-lg); overflow: hidden; }
+.cv-ventana-barra { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--linea); }
+.cv-luces { display: inline-flex; gap: var(--space-2); }
+.cv-luces i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.cv-luz-r { background: var(--vencido); } .cv-luz-a { background: var(--pendiente); } .cv-luz-v { background: var(--pagado); }
+.cv-ruta { font-family: var(--font-mono); font-size: 13px; line-height: 16px; color: var(--tinta-suave); }
+.cv-ventana-cuerpo { padding: var(--space-6); }
+
+/* Boton */
+.cv-btn { font-family: var(--font-mono); font-size: 14px; line-height: 20px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: var(--space-3); height: 40px; padding: 0 var(--space-6); border-radius: var(--radius-md);
+  border: 1px solid var(--linea-fuerte); background: transparent; color: var(--tinta); cursor: pointer; }
+.cv-btn:hover { background: var(--superficie-alta); }
+.cv-btn-primario { background: var(--sol); border-color: var(--sol); color: var(--sobre-sol); }
+.cv-btn-primario:hover { background: var(--sol); filter: brightness(1.06); }
+.cv-btn:focus-visible { outline: none; box-shadow: var(--anillo-foco); }
+.cv-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+/* Estado */
+.cv-estado { display: inline-flex; align-items: center; gap: var(--space-1); font-family: var(--font-mono); font-size: 12px; line-height: 16px; font-weight: 500;
+  padding: var(--space-1) var(--space-2); border-radius: var(--radius-xs); white-space: nowrap; }
+.cv-punto { font-size: 9px; }
+.cv-estado-pagado { background: var(--pagado-tenue); color: var(--pagado); }
+.cv-estado-al-corriente { background: var(--bahia-tenue); color: var(--bahia); }
+.cv-estado-pendiente { background: var(--pendiente-tenue); color: var(--pendiente); }
+.cv-estado-vencido { background: var(--vencido-tenue); color: var(--vencido); }
+.cv-estado-sin-abonos { background: var(--neutro-tenue); color: var(--neutro); }
+
+/* Monto */
+.cv-monto { font-family: var(--font-mono); font-size: 15px; line-height: 22px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--tinta); white-space: nowrap; }
+.cv-monto-grande { font-size: 28px; line-height: 32px; font-weight: 700; }
+.cv-moneda { margin-left: .4em; font-size: 11px; font-weight: 500; letter-spacing: .04em; padding: 1px 4px; border-radius: var(--radius-xs); background: var(--sello); color: var(--tinta-sello); vertical-align: middle; }
+.cv-tono-pagado { color: var(--pagado); } .cv-tono-vencido { color: var(--vencido); } .cv-tono-sol { color: var(--sol); }
+
+/* BarraAbono */
+.cv-barra { display: flex; flex-direction: column; gap: var(--space-2); }
+.cv-barra-pista { height: 8px; background: var(--linea); border-radius: var(--radius-xs); overflow: hidden; }
+.cv-barra-lleno { height: 100%; background: var(--pagado); border-radius: var(--radius-xs); }
+.cv-barra-texto { display: flex; justify-content: space-between; gap: var(--space-3); font-family: var(--font-mono); font-size: 12px; line-height: 16px; color: var(--tinta-suave); font-variant-numeric: tabular-nums; }
+.cv-barra-pct { color: var(--tinta); }
+
+/* TarjetaViajero */
+.cv-tarjeta { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radius-lg); overflow: hidden; }
+.cv-tarjeta-cab { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-3); padding: var(--space-4); background: var(--superficie-alta); border-bottom: 1px solid var(--linea); }
+.cv-nombre { font-size: 16px; line-height: 22px; font-weight: 600; }
+.cv-nota { font-size: 12px; line-height: 16px; color: var(--tinta-suave); }
+.cv-tarjeta-cuerpo { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-4); }
+.cv-datos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin: 0; }
+.cv-datos dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-suave); }
+.cv-datos dd { margin: 0; }
+.cv-tarjeta-pie { display: flex; gap: var(--space-2); padding: 0 var(--space-4) var(--space-4); }
+
+/* Type helpers */
+.cv-ceja { font-family: var(--font-mono); font-size: 13px; line-height: 16px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--sol); }
+.cv-titular { font-family: var(--font-mono); font-size: 40px; line-height: 44px; font-weight: 700; letter-spacing: -.01em; color: var(--tinta); margin: 0; }

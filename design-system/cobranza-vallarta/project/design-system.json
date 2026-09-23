@@ -1,0 +1,14 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": { "v": 1, "at": "2026-09-23T18:54:39Z" },
+  "title": "Cobranza Vallarta",
+  "namespace": "Cobranza",
+  "libraries": [ { "name": "react", "version": "18" }, { "name": "react-dom", "version": "18" } ],
+  "sections": {},
+  "groups": [],
+  "assetGroups": {},
+  "blobs": {},
+  "docs": { "readme": "project/README.md", "sections": [] },
+  "lastChange": { "by": "Claude", "at": "2026-09-23T18:54:39Z", "via": "Claude Code · GitHub wisini/ponytail@e3ba2aa", "note": "Created from Ponytail's visual language for collecting payments on the Puerto Vallarta trip." }
+}

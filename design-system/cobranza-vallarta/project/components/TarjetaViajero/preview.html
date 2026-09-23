@@ -1,0 +1,12 @@
+<!-- @dsCard group="Contenedores" height=300 -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><title>TarjetaViajero</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var C = window.Cobranza, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cv-fila', style: { alignItems: 'stretch' } }, h('div', { style: { width: 320 } }, h(C.TarjetaViajero, { nombre: 'Mariana Robles', folio: 'PV-0142', habitacion: 'Hab. doble', pagado: 4000, total: 8900, estado: 'vencido', dias: 6, proximo: { monto: 2450, fecha: '15 sep' } }, h(C.Boton, { variante: 'primario' }, 'Registrar abono'))), h('div', { style: { width: 320 } }, h(C.TarjetaViajero, { nombre: 'Luis Ángel Pérez', folio: 'PV-0137', habitacion: 'Hab. cuádruple', pagado: 8900, total: 8900, estado: 'pagado' }))));
+</script>
+</body>
+</html>

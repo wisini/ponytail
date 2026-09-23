@@ -1,0 +1,12 @@
+<!-- @dsCard group="Acciones" height=80 -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><title>Boton</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var C = window.Cobranza, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cv-fila' }, h(C.Boton, { variante: 'primario' }, 'Registrar abono'), h(C.Boton, null, 'Enviar recordatorio'), h(C.Boton, { disabled: true }, 'Liquidado')));
+</script>
+</body>
+</html>
