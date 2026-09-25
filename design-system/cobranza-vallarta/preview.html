@@ -1,0 +1,377 @@
+<title>Cobranza Vallarta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;500;700;800&display=swap">
+<style>
+/* Tokens from the Cobranza Vallarta design system. Dark-first: Noche estrellada is the default. */
+:root {
+  color-scheme: dark;
+  --fondo:#0a1433; --superficie:#101d45; --superficie-alta:#17275a; --linea:#243a78; --linea-fuerte:#6b82c4;
+  --tinta:#f5f7ff; --tinta-suave:#aebbe3; --estrella:#ffffff; --sobre-estrella:#0a1433; --estrella-tenue:#1c2d66;
+  --remolino:#8fb0ff; --remolino-tenue:#16295e; --cobalto:#2f5bd3;
+  --cielo-estrellas:rgba(255,255,255,.85); --cielo-remolino:rgba(143,176,255,.10);
+  --pagado:#7fdcc0; --pagado-tenue:#12334a; --pendiente:#f2d27a; --pendiente-tenue:#2b2f45;
+  --vencido:#ff9a9a; --vencido-tenue:#35223f; --neutro:#9aa6c4; --neutro-tenue:#1b2750;
+  --anillo-foco:0 0 0 2px #0a1433, 0 0 0 4px #ffffff; --sombra-dock:0 10px 28px rgba(2,6,20,.6);
+  --velo:rgba(2,6,20,.6); --marco:#050a1c; --mesa:#060c22;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-6:24px; --space-8:32px; --space-dock:112px;
+  --radius-sm:8px; --radius-md:14px; --radius-lg:22px; --radius-full:999px;
+  --toque-min:48px; --pulgar-principal:60px;
+  --font-display:"Macaron","Fredoka","Baloo 2",ui-rounded,system-ui,sans-serif;
+  --font-sans:"Nunito",ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --fondo:#f5f8ff; --superficie:#ffffff; --superficie-alta:#eaf0fc; --linea:#cfdaf2; --linea-fuerte:#6f82b3;
+    --tinta:#0a1433; --tinta-suave:#45558a; --estrella:#0f2466; --sobre-estrella:#ffffff; --estrella-tenue:#e3eaff;
+    --remolino:#2146a8; --remolino-tenue:#e1e9fb; --cobalto:#1b3a8f;
+    --cielo-estrellas:rgba(15,36,102,.22); --cielo-remolino:rgba(33,70,168,.06);
+    --pagado:#11705a; --pagado-tenue:#dcf3ec; --pendiente:#7a5a00; --pendiente-tenue:#f7efd4;
+    --vencido:#b3261e; --vencido-tenue:#fbe3e1; --neutro:#56627f; --neutro-tenue:#e8ebf3;
+    --anillo-foco:0 0 0 2px #ffffff, 0 0 0 4px #2146a8; --sombra-dock:0 10px 28px rgba(10,20,51,.22);
+    --velo:rgba(10,20,51,.35); --marco:#0a1433; --mesa:#dfe6f7;
+  }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --fondo:#f5f8ff; --superficie:#ffffff; --superficie-alta:#eaf0fc; --linea:#cfdaf2; --linea-fuerte:#6f82b3;
+  --tinta:#0a1433; --tinta-suave:#45558a; --estrella:#0f2466; --sobre-estrella:#ffffff; --estrella-tenue:#e3eaff;
+  --remolino:#2146a8; --remolino-tenue:#e1e9fb; --cobalto:#1b3a8f;
+  --cielo-estrellas:rgba(15,36,102,.22); --cielo-remolino:rgba(33,70,168,.06);
+  --pagado:#11705a; --pagado-tenue:#dcf3ec; --pendiente:#7a5a00; --pendiente-tenue:#f7efd4;
+  --vencido:#b3261e; --vencido-tenue:#fbe3e1; --neutro:#56627f; --neutro-tenue:#e8ebf3;
+  --anillo-foco:0 0 0 2px #ffffff, 0 0 0 4px #2146a8; --sombra-dock:0 10px 28px rgba(10,20,51,.22);
+  --velo:rgba(10,20,51,.35); --marco:#0a1433; --mesa:#dfe6f7;
+}
+
+html, body { height: 100%; }
+body { margin: 0; background: var(--mesa); color: var(--tinta); font-family: var(--font-sans); font-size: 16px; line-height: 24px; -webkit-tap-highlight-color: transparent; }
+button, input, select { font: inherit; color: inherit; }
+
+/* Desktop: phone frame centered with a short legend. Phone: the app fills the screen. */
+.escena { min-height: 100%; display: flex; align-items: center; justify-content: center; gap: 48px; padding-block: 32px; padding-inline: 16px; box-sizing: border-box; }
+.leyenda { max-width: 260px; color: var(--tinta-suave); font-size: 14px; line-height: 21px; }
+.leyenda h2 { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 28px; color: var(--tinta); margin: 0 0 8px; }
+.leyenda ul { padding-left: 18px; margin: 12px 0 0; }
+.leyenda li + li { margin-top: 6px; }
+.telefono { position: relative; width: 390px; height: 844px; max-width: 100%; border-radius: 52px; padding: 10px; background: var(--marco); box-shadow: 0 30px 60px rgba(2,6,20,.35); flex: none; }
+.app { position: relative; width: 100%; height: 100%; border-radius: 42px; overflow: hidden; }
+@media (max-width: 720px) {
+  .escena { padding: 0; display: block; }
+  .leyenda { display: none; }
+  .telefono { width: 100%; height: 100dvh; max-height: 100%; padding: 0; border-radius: 0; box-shadow: none; background: none; }
+  .app { border-radius: 0; }
+}
+
+/* Cielo: the Starry Night texture */
+.cielo { background-color: var(--fondo);
+  background-image:
+    radial-gradient(circle at 12% 7%, var(--cielo-estrellas) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 70% 3%, var(--cielo-estrellas) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 44% 14%, var(--cielo-estrellas) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 93% 20%, var(--cielo-estrellas) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 5% 33%, var(--cielo-estrellas) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 60% 44%, var(--cielo-estrellas) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 24% 60%, var(--cielo-estrellas) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 90% 70%, var(--cielo-estrellas) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 46% 86%, var(--cielo-estrellas) 0 1.5px, transparent 2px),
+    repeating-radial-gradient(circle at 85% 10%, transparent 0 18px, var(--cielo-remolino) 18px 24px, transparent 24px 36px),
+    repeating-radial-gradient(circle at 10% 70%, transparent 0 22px, var(--cielo-remolino) 22px 28px, transparent 28px 42px);
+  background-size: 100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%, 240px 240px, 280px 280px;
+  background-repeat: no-repeat;
+  background-position: 0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0, right -60px top -60px, left -90px top 360px;
+  background-attachment: local;
+}
+
+.pantalla { position: absolute; inset: 0; overflow-y: auto; display: flex; flex-direction: column; scrollbar-width: none; }
+.pantalla::-webkit-scrollbar { display: none; }
+.cab { padding: calc(40px + env(safe-area-inset-top, 0px)) 16px 20px; display: flex; flex-direction: column; gap: 8px; }
+.ceja { font-family: var(--font-display); font-size: 13px; line-height: 16px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--estrella); }
+.titular { font-family: var(--font-display); font-size: 34px; line-height: 38px; font-weight: 600; margin: 0; text-wrap: balance; font-variant-numeric: tabular-nums; }
+.sub { margin: 0; color: var(--tinta-suave); }
+.cuerpo { flex: 1; display: flex; flex-direction: column; gap: 16px; padding: 0 16px var(--space-dock); }
+.subtitulo { font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 600; margin: 8px 0 0; display: flex; align-items: baseline; gap: 8px; }
+.subtitulo small { font-family: var(--font-sans); font-size: 13px; font-weight: 700; color: var(--tinta-suave); }
+
+/* Resumen */
+.resumen { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radius-lg); padding: 16px; display: grid; gap: 12px; }
+.resumen-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: left; }
+.resumen-nums b { display: block; font-size: 22px; line-height: 28px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.resumen-nums span { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-suave); }
+
+/* Filtros: chips in a scrollable row */
+.filtros { display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 0 16px 2px; scrollbar-width: none; }
+.filtros::-webkit-scrollbar { display: none; }
+.filtro { flex: none; min-height: 40px; padding: 0 16px; border-radius: var(--radius-full); border: 1.5px solid var(--linea); background: var(--superficie); color: var(--tinta-suave); font-weight: 700; font-size: 14px; cursor: pointer; }
+.filtro[aria-pressed="true"] { background: var(--estrella-tenue); color: var(--tinta); border-color: var(--estrella); }
+
+/* Tarjeta */
+.tarjeta { display: block; width: 100%; text-align: left; padding: 0; background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; }
+.tarjeta:active { transform: scale(.99); }
+.t-cab { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 14px 16px; background: var(--superficie-alta); }
+.nombre { font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 600; }
+.nota { font-size: 13px; line-height: 18px; font-weight: 500; color: var(--tinta-suave); }
+.t-cuerpo { display: flex; flex-direction: column; gap: 14px; padding: 14px 16px 16px; }
+.estado { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; line-height: 18px; font-weight: 700; padding: 4px 8px; border-radius: var(--radius-sm); white-space: nowrap; }
+.estado::before { content: "✦"; font-size: 10px; }
+.e-pagado { background: var(--pagado-tenue); color: var(--pagado); }
+.e-al-corriente { background: var(--remolino-tenue); color: var(--remolino); }
+.e-pendiente { background: var(--pendiente-tenue); color: var(--pendiente); }
+.e-vencido { background: var(--vencido-tenue); color: var(--vencido); }
+.e-sin-abonos { background: var(--neutro-tenue); color: var(--neutro); }
+.barra { display: flex; flex-direction: column; gap: 8px; }
+.pista { height: 10px; background: var(--linea); border-radius: var(--radius-full); overflow: hidden; }
+.lleno { height: 100%; background: var(--remolino); border-radius: var(--radius-full); transition: width .5s ease; }
+.barra-txt { display: flex; justify-content: space-between; font-size: 13px; line-height: 18px; color: var(--tinta-suave); font-variant-numeric: tabular-nums; }
+.barra-txt b { color: var(--tinta); }
+.datos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0; }
+.datos dt { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-suave); }
+.datos dd { margin: 0; }
+.monto { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.monto-grande { font-size: 32px; line-height: 36px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.mxn { margin-left: .4em; font-size: 11px; font-weight: 700; letter-spacing: .04em; padding: 1px 6px; border-radius: var(--radius-sm); background: var(--estrella-tenue); vertical-align: middle; }
+.vacio { text-align: center; color: var(--tinta-suave); padding: 32px 16px; }
+
+/* Dock del pulgar: bottom-right */
+.dock { position: absolute; right: 0; bottom: 0; z-index: 5; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; padding: 16px 16px calc(24px + env(safe-area-inset-bottom, 0px)); pointer-events: none; }
+.dock > * { pointer-events: auto; box-shadow: var(--sombra-dock); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: var(--toque-min); padding: 0 24px; border-radius: var(--radius-full); border: 1.5px solid var(--linea-fuerte); background: var(--superficie); color: var(--tinta); font-family: var(--font-display); font-size: 17px; line-height: 22px; font-weight: 600; cursor: pointer; touch-action: manipulation; }
+.btn:active { transform: scale(.97); }
+.btn-primario { min-height: var(--pulgar-principal); background: var(--estrella); border-color: var(--estrella); color: var(--sobre-estrella); padding: 0 24px 0 18px; }
+.btn-primario .mas { font-family: var(--font-sans); font-size: 26px; font-weight: 800; line-height: 1; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+.btn-ancho { width: 100%; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: none; box-shadow: var(--anillo-foco); }
+
+/* Hoja inferior (bottom sheet) */
+.velo { position: absolute; inset: 0; background: var(--velo); z-index: 10; opacity: 0; transition: opacity .2s; }
+.velo.abierto { opacity: 1; }
+.hoja { position: absolute; left: 0; right: 0; bottom: 0; z-index: 11; background: var(--superficie); border-radius: 28px 28px 0 0; border-top: 1px solid var(--linea); padding: 10px 16px calc(24px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 16px; transform: translateY(100%); transition: transform .25s ease; max-height: 88%; overflow-y: auto; }
+.hoja.abierta { transform: none; }
+.asa { width: 40px; height: 5px; border-radius: 3px; background: var(--linea-fuerte); align-self: center; }
+.hoja h3 { font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 600; margin: 0; }
+.campo { display: flex; flex-direction: column; gap: 6px; }
+.campo label { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-suave); }
+.campo input, .campo select { min-height: 52px; padding: 0 14px; border-radius: var(--radius-md); border: 1.5px solid var(--linea-fuerte); background: var(--superficie-alta); font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.rapidos { display: flex; gap: 8px; flex-wrap: wrap; }
+.error { color: var(--vencido); font-size: 14px; font-weight: 700; margin: -8px 0 0; }
+.acciones-hoja { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.historial { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.historial li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--linea); font-size: 14px; }
+.historial li:last-child { border-bottom: 0; }
+
+/* Aviso */
+.aviso { position: absolute; left: 16px; right: 16px; top: calc(16px + env(safe-area-inset-top, 0px)); z-index: 20; background: var(--estrella); color: var(--sobre-estrella); border-radius: var(--radius-md); padding: 12px 16px; font-weight: 700; transform: translateY(-220%); visibility: hidden; transition: transform .25s ease, visibility .25s; }
+.aviso.visible { transform: none; visibility: visible; }
+@media (prefers-reduced-motion: reduce) { *, *::before { transition: none !important; } .btn:active, .tarjeta:active { transform: none; } }
+</style>
+
+<div class="escena">
+  <aside class="leyenda">
+    <h2>Cobranza Vallarta</h2>
+    Vista previa del sistema de diseño en un teléfono de 390 × 844. Todo funciona:
+    <ul>
+      <li>Toca <b>+ Registrar abono</b> abajo a la derecha, donde está el pulgar.</li>
+      <li>Toca una tarjeta para ver el detalle del viajero.</li>
+      <li>Filtra por estado con los chips.</li>
+    </ul>
+    <p>Los viajeros y montos son de ejemplo. Toma el tema claro u oscuro de tu dispositivo.</p>
+  </aside>
+
+  <div class="telefono">
+    <div class="app" id="app">
+      <div class="pantalla cielo" id="pantalla">
+        <header class="cab">
+          <div class="ceja">✦ Puerto Vallarta · 12–16 nov</div>
+          <h1 class="titular" id="titular"></h1>
+          <p class="sub" id="sub"></p>
+        </header>
+        <main class="cuerpo">
+          <section class="resumen" aria-label="Resumen">
+            <div class="barra" id="barra-total"></div>
+            <div class="resumen-nums" id="nums"></div>
+          </section>
+          <div class="filtros" role="group" aria-label="Filtrar por estado" id="filtros"></div>
+          <div id="lista" style="display:flex;flex-direction:column;gap:16px"></div>
+        </main>
+      </div>
+
+      <nav class="dock" aria-label="Acciones">
+        <button class="btn" id="btn-recordar" type="button">Enviar recordatorios</button>
+        <button class="btn btn-primario" id="btn-abono" type="button"><span class="mas" aria-hidden="true">+</span>Registrar abono</button>
+      </nav>
+
+      <div class="velo" id="velo" hidden></div>
+      <section class="hoja" id="hoja" role="dialog" aria-modal="true" aria-labelledby="hoja-titulo" hidden></section>
+      <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var TOTAL = 8900;
+  var HOY = new Date(2026, 8, 25); // 25 sep 2026
+  // Sample viajeros. vence = fecha límite of the next abono.
+  var viajeros = [
+    { id: 1, nombre: 'Mariana Robles', folio: 'PV-0142', hab: 'Hab. doble', abonos: [2000, 2000], vence: '2026-09-19', siguiente: 2450 },
+    { id: 2, nombre: 'Jorge Castañeda', folio: 'PV-0129', hab: 'Hab. triple', abonos: [2000], vence: '2026-09-23', siguiente: 2300 },
+    { id: 3, nombre: 'Luis Ángel Pérez', folio: 'PV-0137', hab: 'Hab. cuádruple', abonos: [2000, 2000, 2450], vence: '2026-09-28', siguiente: 2450 },
+    { id: 4, nombre: 'Daniela Ochoa', folio: 'PV-0131', hab: 'Hab. doble', abonos: [2000, 2450], vence: '2026-10-01', siguiente: 2225 },
+    { id: 5, nombre: 'Ricardo Salinas', folio: 'PV-0118', hab: 'Hab. doble', abonos: [2000, 2450, 2450], vence: '2026-10-15', siguiente: 2000 },
+    { id: 6, nombre: 'Fernanda Iturbide', folio: 'PV-0120', hab: 'Hab. triple', abonos: [2000, 2300, 2300], vence: '2026-10-15', siguiente: 2300 },
+    { id: 7, nombre: 'Sofía Mendoza', folio: 'PV-0104', hab: 'Hab. doble', abonos: [2000, 3450, 3450], vence: null, siguiente: 0 },
+    { id: 8, nombre: 'Emilio Garza', folio: 'PV-0155', hab: 'Hab. cuádruple', abonos: [], vence: '2026-10-05', siguiente: 2000 }
+  ];
+  var filtro = 'todos';
+
+  var fmt = new Intl.NumberFormat('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var pesos = function (n) { return '$' + fmt.format(n); };
+  var pesosCorto = function (n) { return '$' + Math.round(n).toLocaleString('es-MX'); };
+  var MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  var fechaCorta = function (iso) { var d = new Date(iso + 'T12:00:00'); return d.getDate() + ' ' + MESES[d.getMonth()]; };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var pagado = function (v) { return v.abonos.reduce(function (a, b) { return a + b; }, 0); };
+  var dias = function (iso) { return Math.round((new Date(iso + 'T12:00:00') - HOY) / 864e5); };
+
+  function estado(v) {
+    var p = pagado(v);
+    if (p >= TOTAL) return { k: 'pagado', txt: 'Pagado' };
+    if (p === 0 && v.vence && dias(v.vence) < 0) return { k: 'vencido', txt: 'Vencido · ' + -dias(v.vence) + ' días' };
+    if (p === 0) return { k: 'sin-abonos', txt: 'Sin abonos' };
+    var d = dias(v.vence);
+    if (d < 0) return { k: 'vencido', txt: 'Vencido · ' + -d + (d === -1 ? ' día' : ' días') };
+    if (d <= 7) return { k: 'pendiente', txt: 'Pendiente · ' + d + (d === 1 ? ' día' : ' días') };
+    return { k: 'al-corriente', txt: 'Al corriente' };
+  }
+  var ORDEN = { vencido: 0, pendiente: 1, 'sin-abonos': 2, 'al-corriente': 3, pagado: 4 };
+
+  function barra(p, t) {
+    var pct = t ? Math.min(100, Math.round(p / t * 100)) : 0;
+    return '<div class="pista" role="progressbar" aria-label="Abonado" aria-valuemin="0" aria-valuemax="' + t + '" aria-valuenow="' + p + '"><div class="lleno" style="width:' + pct + '%"></div></div>' +
+      '<div class="barra-txt"><span>' + pesos(p) + ' de ' + pesos(t) + '</span><b>' + pct + '%</b></div>';
+  }
+
+  function tarjeta(v) {
+    var e = estado(v), p = pagado(v), saldo = Math.max(TOTAL - p, 0);
+    return '<button class="tarjeta" type="button" data-id="' + v.id + '">' +
+      '<div class="t-cab"><div><div class="nombre">' + esc(v.nombre) + '</div><div class="nota">Folio ' + v.folio + ' · ' + v.hab + '</div></div>' +
+      '<span class="estado e-' + e.k + '">' + e.txt + '</span></div>' +
+      '<div class="t-cuerpo"><div class="barra">' + barra(p, TOTAL) + '</div>' +
+      '<dl class="datos"><div><dt>Saldo</dt><dd class="monto">' + pesos(saldo) + '</dd></div>' +
+      (saldo > 0 && v.vence ? '<div><dt>Próximo abono</dt><dd><span class="monto">' + pesos(Math.min(v.siguiente, saldo)) + '</span> <span class="nota">· ' + fechaCorta(v.vence) + '</span></dd></div>' : '<div><dt>Liquidado</dt><dd class="nota">Listo para viajar</dd></div>') +
+      '</dl></div></button>';
+  }
+
+  var FILTROS = [['todos', 'Todos'], ['vencido', 'Vencidos'], ['pendiente', 'Por vencer'], ['al-corriente', 'Al corriente'], ['pagado', 'Pagados'], ['sin-abonos', 'Sin abonos']];
+
+  function render() {
+    var total = viajeros.length * TOTAL;
+    var cobrado = viajeros.reduce(function (a, v) { return a + Math.min(pagado(v), TOTAL); }, 0);
+    var cuenta = {}; viajeros.forEach(function (v) { var k = estado(v).k; cuenta[k] = (cuenta[k] || 0) + 1; });
+    var faltan = total - cobrado;
+    document.getElementById('titular').textContent = faltan > 0 ? 'Faltan ' + pesosCorto(faltan) + '.' : 'Todo pagado.';
+    document.getElementById('sub').textContent = viajeros.length + ' viajeros · ' + (cuenta.vencido || 0) + (cuenta.vencido === 1 ? ' vencido' : ' vencidos') + ' · ' + (cuenta.pagado || 0) + (cuenta.pagado === 1 ? ' liquidado' : ' liquidados');
+    document.getElementById('barra-total').innerHTML = barra(cobrado, total);
+    document.getElementById('nums').innerHTML =
+      '<div><b>' + pesosCorto(cobrado) + '</b><span>Cobrado</span></div>' +
+      '<div><b>' + (cuenta.vencido || 0) + '</b><span>Vencidos</span></div>' +
+      '<div><b>' + (cuenta.pendiente || 0) + '</b><span>Por vencer</span></div>';
+
+    document.getElementById('filtros').innerHTML = FILTROS.map(function (f) {
+      var n = f[0] === 'todos' ? viajeros.length : (cuenta[f[0]] || 0);
+      return '<button class="filtro" type="button" data-f="' + f[0] + '" aria-pressed="' + (filtro === f[0]) + '">' + f[1] + ' ' + n + '</button>';
+    }).join('');
+
+    var lista = viajeros.filter(function (v) { return filtro === 'todos' || estado(v).k === filtro; })
+      .sort(function (a, b) { return ORDEN[estado(a).k] - ORDEN[estado(b).k] || a.nombre.localeCompare(b.nombre, 'es'); });
+    document.getElementById('lista').innerHTML = lista.length ? lista.map(tarjeta).join('') : '<p class="vacio">Nadie en este estado.</p>';
+  }
+
+  // Bottom sheet
+  var velo = document.getElementById('velo'), hoja = document.getElementById('hoja'), ultimoFoco = null;
+  function abrirHoja(html) {
+    ultimoFoco = document.activeElement;
+    hoja.innerHTML = '<div class="asa" aria-hidden="true"></div>' + html;
+    velo.hidden = false; hoja.hidden = false;
+    requestAnimationFrame(function () { velo.classList.add('abierto'); hoja.classList.add('abierta'); var f = hoja.querySelector('input, select, button'); if (f) f.focus(); });
+  }
+  function cerrarHoja() {
+    velo.classList.remove('abierto'); hoja.classList.remove('abierta');
+    setTimeout(function () { velo.hidden = true; hoja.hidden = true; if (ultimoFoco) ultimoFoco.focus(); }, 250);
+  }
+  velo.addEventListener('click', cerrarHoja);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !hoja.hidden) cerrarHoja(); });
+
+  var avisoT;
+  function aviso(txt) { var a = document.getElementById('aviso'); a.textContent = txt; a.classList.add('visible'); clearTimeout(avisoT); avisoT = setTimeout(function () { a.classList.remove('visible'); }, 2600); }
+
+  function hojaAbono(idSel) {
+    var opciones = viajeros.filter(function (v) { return pagado(v) < TOTAL; })
+      .sort(function (a, b) { return ORDEN[estado(a).k] - ORDEN[estado(b).k] || a.nombre.localeCompare(b.nombre, 'es'); });
+    if (!opciones.length) { aviso('Todos liquidaron. Nada que registrar.'); return; }
+    var sel = idSel || opciones[0].id;
+    abrirHoja('<h3 id="hoja-titulo">Registrar abono</h3>' +
+      '<form id="form-abono" novalidate style="display:flex;flex-direction:column;gap:16px">' +
+      '<div class="campo"><label for="f-viajero">Viajero</label><select id="f-viajero">' +
+      opciones.map(function (v) { return '<option value="' + v.id + '"' + (v.id === sel ? ' selected' : '') + '>' + esc(v.nombre) + '</option>'; }).join('') +
+      '</select></div>' +
+      '<p class="nota" id="f-saldo" style="margin:-8px 0 0"></p><div class="campo"><label for="f-monto">Monto (MXN)</label><input id="f-monto" inputmode="decimal" autocomplete="off"></div>' +
+      '<div class="rapidos" id="rapidos"></div>' +
+      '<p class="error" id="f-error" hidden></p>' +
+      '<div class="acciones-hoja"><button class="btn" type="button" id="f-cancelar">Cancelar</button>' +
+      '<button class="btn btn-primario" type="submit"><span class="mas" aria-hidden="true">+</span>Registrar</button></div></form>');
+
+    var selEl = document.getElementById('f-viajero'), monto = document.getElementById('f-monto');
+    function sugerencias() {
+      var v = viajeros.find(function (x) { return x.id === +selEl.value; }), saldo = TOTAL - pagado(v);
+      var ops = [Math.min(v.siguiente || 2000, saldo), saldo].filter(function (n, i, a) { return n > 0 && a.indexOf(n) === i; });
+      monto.value = ops[0].toFixed(2);
+      document.getElementById('f-saldo').textContent = 'Saldo: ' + pesos(saldo) + (v.vence ? ' · próximo abono ' + fechaCorta(v.vence) : '');
+      document.getElementById('rapidos').innerHTML = ops.map(function (n, i) {
+        return '<button class="btn" type="button" data-m="' + n + '">' + (i === ops.length - 1 && n === saldo ? 'Liquidar ' : '') + pesos(n) + '</button>';
+      }).join('');
+    }
+    sugerencias();
+    selEl.addEventListener('change', sugerencias);
+    document.getElementById('rapidos').addEventListener('click', function (e) { var b = e.target.closest('[data-m]'); if (b) monto.value = (+b.dataset.m).toFixed(2); });
+    document.getElementById('f-cancelar').addEventListener('click', cerrarHoja);
+    document.getElementById('form-abono').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = viajeros.find(function (x) { return x.id === +selEl.value; }), saldo = TOTAL - pagado(v);
+      var n = Math.round(parseFloat(monto.value.replace(/[$,\s]/g, '')) * 100) / 100;
+      var err = document.getElementById('f-error');
+      if (!(n > 0)) { err.textContent = 'Escribe un monto mayor a $0.'; err.hidden = false; monto.focus(); return; }
+      if (n > saldo) { err.textContent = 'El saldo de ' + v.nombre.split(' ')[0] + ' es ' + pesos(saldo) + '. Escribe ese monto o menos.'; err.hidden = false; monto.focus(); return; }
+      v.abonos.push(n);
+      if (pagado(v) < TOTAL) { var d = new Date(Math.max(HOY, new Date(v.vence + 'T12:00:00'))); d.setMonth(d.getMonth() + 1); v.vence = d.toISOString().slice(0, 10); }
+      cerrarHoja(); render();
+      aviso(pagado(v) >= TOTAL ? v.nombre.split(' ')[0] + ' liquidó. ✦' : 'Abono de ' + pesos(n) + ' registrado. Folio ' + v.folio + '.');
+    });
+  }
+
+  function hojaDetalle(id) {
+    var v = viajeros.find(function (x) { return x.id === id; }), e = estado(v), p = pagado(v);
+    var nombres = ['Anticipo', 'Segundo abono', 'Tercer abono', 'Cuarto abono', 'Quinto abono'];
+    abrirHoja('<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div><h3 id="hoja-titulo">' + esc(v.nombre) + '</h3><div class="nota">Folio ' + v.folio + ' · ' + v.hab + '</div></div><span class="estado e-' + e.k + '">' + e.txt + '</span></div>' +
+      '<div><div class="nota" style="font-weight:700;letter-spacing:.06em;text-transform:uppercase">Saldo</div><div class="monto-grande">' + pesos(Math.max(TOTAL - p, 0)) + '<span class="mxn">MXN</span></div></div>' +
+      '<div class="barra">' + barra(p, TOTAL) + '</div>' +
+      (v.abonos.length ? '<ul class="historial">' + v.abonos.map(function (a, i) { return '<li><span>' + (nombres[i] || 'Abono ' + (i + 1)) + '</span><span class="monto">' + pesos(a) + '</span></li>'; }).join('') + '</ul>' : '<p class="nota">Aún no hay abonos. El anticipo aparta el lugar.</p>') +
+      '<div class="acciones-hoja"><button class="btn" type="button" id="d-cerrar">Cerrar</button>' +
+      (p < TOTAL ? '<button class="btn btn-primario" type="button" id="d-abono"><span class="mas" aria-hidden="true">+</span>Registrar abono</button>' : '') + '</div>');
+    document.getElementById('d-cerrar').addEventListener('click', cerrarHoja);
+    var b = document.getElementById('d-abono');
+    if (b) b.addEventListener('click', function () { hoja.classList.remove('abierta'); setTimeout(function () { hojaAbono(id); }, 200); });
+  }
+
+  document.getElementById('filtros').addEventListener('click', function (e) { var b = e.target.closest('[data-f]'); if (b) { filtro = b.dataset.f; render(); } });
+  document.getElementById('lista').addEventListener('click', function (e) { var b = e.target.closest('[data-id]'); if (b) hojaDetalle(+b.dataset.id); });
+  document.getElementById('btn-abono').addEventListener('click', function () { hojaAbono(); });
+  document.getElementById('btn-recordar').addEventListener('click', function () {
+    var n = viajeros.filter(function (v) { var k = estado(v).k; return k === 'vencido' || k === 'pendiente'; }).length;
+    aviso(n ? 'Recordatorios listos para ' + n + ' viajeros. (Vista previa: no se envía nada.)' : 'Nadie tiene abonos por vencer.');
+  });
+
+  render();
+})();
+</script>
