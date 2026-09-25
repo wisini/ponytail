@@ -22,4 +22,4 @@ Also: a monospace terminal voice ("He's building something. / Won't say what."),
 
 ## cobranza-vallarta/
 
-A new system built from that language for collecting payments on a group trip to Puerto Vallarta. `project/` is the published Design System artifact's file tree (tokens, brand book, `window.Cobranza` React components, previews, cover).
+A new system for collecting payments on a group trip to Puerto Vallarta: Ponytail's structure and voice, recolored as a navy-and-white Starry Night, mobile-first (390 × 844) with actions in a bottom-right thumb dock. `project/` is the published Design System artifact's file tree.

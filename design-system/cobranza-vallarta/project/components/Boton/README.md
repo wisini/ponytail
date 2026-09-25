@@ -1,7 +1,8 @@
 # Boton
 
-Uppercase mono button; `quieto` (outlined) is the default. **Primario** (sol fill, `sobre-sol` text, trailing →) at most once per Ventana, for the thing the screen is for — usually "Registrar abono".
+A pill button in the display face; `quieto` (outlined) is the default. **Primario** (the `estrella` fill with `sobre-estrella` text, 60px tall) appears once per Pantalla, as the bottom item of the DockPulgar.
 
-- **Consumer provides:** `variante` (`primario` | `quieto`), label as `children`, the usual button props.
-- Labels: verb first, two or three words, no punctuation. "Registrar abono", "Enviar recordatorio", "Ver recibo". The → is added for you on primario; don't type one.
-- Focus shows `anillo-foco`. Disabled drops to 45% opacity; say why nearby ("Liquidado").
+- **Consumer provides:** `variante` (`primario` | `quieto`), an optional `icono` ("+" on the primario), the label as `children`, and the usual button props.
+- Labels are sentence case, verb first, two or three words: "Registrar abono", "Enviar recordatorios", "Ver recibo".
+- The tap target is at least 48px (`toque-min`). Pressing scales the button to 97%; there's no motion when reduced motion is set. Focus shows `anillo-foco`.
+- In a card footer, buttons align right, on the thumb's side.

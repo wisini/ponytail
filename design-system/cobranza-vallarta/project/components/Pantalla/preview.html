@@ -1,0 +1,12 @@
+<!-- @dsCard group="Pantallas" height=844 width=390 -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Pantalla</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var C = window.Cobranza, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(C.Pantalla, { ceja: 'Puerto Vallarta · 12–16 nov', titulo: 'Faltan $41,300.', subtitulo: '14 viajeros · 9 al corriente · 2 vencidos', acciones: [h(C.Boton, { key: 'r' }, 'Enviar recordatorios'), h(C.Boton, { key: 'a', variante: 'primario', icono: '+' }, 'Registrar abono')] }, h('h2', { className: 'cv-subtitulo', style: { marginTop: 0 } }, 'Vencidos'), h(C.TarjetaViajero, { nombre: 'Mariana Robles', folio: 'PV-0142', habitacion: 'Hab. doble', pagado: 4000, total: 8900, estado: 'vencido', dias: 6, proximo: { monto: 2450, fecha: '15 sep' } }), h(C.TarjetaViajero, { nombre: 'Jorge Castañeda', folio: 'PV-0129', habitacion: 'Hab. triple', pagado: 2000, total: 8900, estado: 'vencido', dias: 2, proximo: { monto: 2300, fecha: '19 sep' } }), h('h2', { className: 'cv-subtitulo' }, 'Por vencer'), h(C.TarjetaViajero, { nombre: 'Luis Ángel Pérez', folio: 'PV-0137', habitacion: 'Hab. cuádruple', pagado: 6450, total: 8900, estado: 'pendiente', dias: 3, proximo: { monto: 2450, fecha: '28 sep' } })));
+</script>
+</body>
+</html>

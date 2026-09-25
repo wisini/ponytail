@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"Cobranza","components":[{"name":"Ventana"},{"name":"Boton"},{"name":"Estado"},{"name":"Monto"},{"name":"BarraAbono"},{"name":"TarjetaViajero"}]} */
+/* @ds-bundle: {"format":4,"namespace":"Cobranza","components":[{"name":"Pantalla"},{"name":"DockPulgar"},{"name":"Boton"},{"name":"Estado"},{"name":"Monto"},{"name":"BarraAbono"},{"name":"TarjetaViajero"}]} */
 (function () {
   var h = window.React.createElement;
   function cx() { return Array.prototype.filter.call(arguments, Boolean).join(' '); }
@@ -7,27 +7,36 @@
 
   var ETIQUETAS = { pagado: 'Pagado', 'al-corriente': 'Al corriente', pendiente: 'Pendiente', vencido: 'Vencido', 'sin-abonos': 'Sin abonos' };
 
-  function Ventana(p) {
-    return h('section', { className: cx('cv-ventana', p.className), 'aria-label': p.titulo || p.ruta },
-      h('header', { className: 'cv-ventana-barra' },
-        h('span', { className: 'cv-luces', 'aria-hidden': 'true' }, h('i', { className: 'cv-luz-r' }), h('i', { className: 'cv-luz-a' }), h('i', { className: 'cv-luz-v' })),
-        p.ruta ? h('span', { className: 'cv-ruta' }, p.ruta) : null),
-      h('div', { className: 'cv-ventana-cuerpo' }, p.children));
+  // A phone screen: starry header, scrolling content, and the thumb dock pinned bottom-right.
+  function Pantalla(p) {
+    return h('div', { className: cx('cv-pantalla cv-cielo', p.className) },
+      h('header', { className: 'cv-pantalla-cab' },
+        p.ceja ? h('div', { className: 'cv-ceja' }, '✦ ' + p.ceja) : null,
+        p.titulo ? h('h1', { className: 'cv-titular' }, p.titulo) : null,
+        p.subtitulo ? h('p', { className: 'cv-pantalla-sub' }, p.subtitulo) : null),
+      h('main', { className: 'cv-pantalla-cuerpo' }, p.children),
+      p.acciones ? h(DockPulgar, null, p.acciones) : null);
+  }
+
+  // Bottom-right action stack. Children top→bottom; the LAST child sits nearest the thumb and should be the primario.
+  function DockPulgar(p) {
+    return h('nav', { className: 'cv-dock', 'aria-label': p.etiqueta || 'Acciones' }, p.children);
   }
 
   function Boton(p) {
     var variante = p.variante || 'quieto';
-    var rest = Object.assign({}, p); delete rest.variante; delete rest.className; delete rest.children;
+    var rest = Object.assign({}, p); delete rest.variante; delete rest.className; delete rest.children; delete rest.icono;
     return h('button', Object.assign({ type: 'button' }, rest, { className: cx('cv-btn', 'cv-btn-' + variante, p.className) }),
-      p.children, variante === 'primario' ? h('span', { 'aria-hidden': 'true', className: 'cv-flecha' }, '→') : null);
+      p.icono ? h('span', { className: 'cv-btn-icono', 'aria-hidden': 'true' }, p.icono) : null,
+      h('span', null, p.children));
   }
 
   function Estado(p) {
     var e = p.estado || 'sin-abonos';
     var texto = ETIQUETAS[e] || e;
     if (e === 'vencido' && p.dias) texto += ' · ' + p.dias + (p.dias === 1 ? ' día' : ' días');
-    if (e === 'pendiente' && p.dias != null) texto += ' · vence en ' + p.dias + (p.dias === 1 ? ' día' : ' días');
-    return h('span', { className: 'cv-estado cv-estado-' + e }, h('span', { className: 'cv-punto', 'aria-hidden': 'true' }, '●'), texto);
+    if (e === 'pendiente' && p.dias != null) texto += ' · ' + p.dias + (p.dias === 1 ? ' día' : ' días');
+    return h('span', { className: 'cv-estado cv-estado-' + e }, h('span', { className: 'cv-punto', 'aria-hidden': 'true' }, '✦'), texto);
   }
 
   function Monto(p) {
@@ -62,5 +71,5 @@
       p.children ? h('footer', { className: 'cv-tarjeta-pie' }, p.children) : null);
   }
 
-  window.Cobranza = Object.assign(window.Cobranza || {}, { Ventana: Ventana, Boton: Boton, Estado: Estado, Monto: Monto, BarraAbono: BarraAbono, TarjetaViajero: TarjetaViajero, pesos: pesos });
+  window.Cobranza = Object.assign(window.Cobranza || {}, { Pantalla: Pantalla, DockPulgar: DockPulgar, Boton: Boton, Estado: Estado, Monto: Monto, BarraAbono: BarraAbono, TarjetaViajero: TarjetaViajero, pesos: pesos });
 })();

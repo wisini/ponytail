@@ -1,12 +1,12 @@
-<!-- @dsCard group="Dinero" height=90 -->
+<!-- @dsCard group="Dinero" height=110 width=390 -->
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><title>Monto</title></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Monto</title></head>
 <body>
 <div id="root"></div>
 <script>
   var C = window.Cobranza, h = React.createElement;
-  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cv-fila', style: { alignItems: 'baseline', gap: 24 } }, h(C.Monto, { valor: 8900, tamano: 'grande' }), h(C.Monto, { valor: 2000 }), h(C.Monto, { valor: 6900, tono: 'vencido' }), h(C.Monto, { valor: 1450, moneda: false })));
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cv-pila' }, h(C.Monto, { valor: 8900, tamano: 'grande' }), h('div', { className: 'cv-fila', style: { padding: 0, gap: 20 } }, h(C.Monto, { valor: 2000 }), h(C.Monto, { valor: 6900, tono: 'vencido' }), h(C.Monto, { valor: 1450, moneda: false }))));
 </script>
 </body>
 </html>

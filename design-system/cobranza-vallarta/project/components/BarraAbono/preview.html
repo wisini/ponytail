@@ -1,12 +1,12 @@
-<!-- @dsCard group="Dinero" height=130 -->
+<!-- @dsCard group="Dinero" height=170 width=390 -->
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><title>BarraAbono</title></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>BarraAbono</title></head>
 <body>
 <div id="root"></div>
 <script>
   var C = window.Cobranza, h = React.createElement;
-  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cv-pila', style: { maxWidth: 420 } }, h(C.BarraAbono, { pagado: 2000, total: 8900 }), h(C.BarraAbono, { pagado: 6450, total: 8900 }), h(C.BarraAbono, { pagado: 8900, total: 8900 })));
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cv-pila' }, h(C.BarraAbono, { pagado: 2000, total: 8900 }), h(C.BarraAbono, { pagado: 6450, total: 8900 }), h(C.BarraAbono, { pagado: 8900, total: 8900 })));
 </script>
 </body>
 </html>

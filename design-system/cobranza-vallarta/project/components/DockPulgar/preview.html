@@ -1,0 +1,12 @@
+<!-- @dsCard group="Pantallas" height=260 width=390 -->
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>DockPulgar</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var C = window.Cobranza, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cv-cielo', style: { height: 260, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' } }, h(C.DockPulgar, null, h(C.Boton, null, 'Ver recibos'), h(C.Boton, null, 'Enviar recordatorios'), h(C.Boton, { variante: 'primario', icono: '+' }, 'Registrar abono'))));
+</script>
+</body>
+</html>
